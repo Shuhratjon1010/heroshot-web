@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to HeroShot — Pre-order confirmed</title>
+    <meta name="description" content="You're in. Here's what happens next.">
+    <!-- Post-purchase confirmation page; should NOT be indexed (carries
+         session-specific founding-seller number via ?cs= query param). -->
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📸</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --brand: #2E8AE6;
+            --brand-dark: #1E5A99;
+            --navy: #0D223A;
+            --bg: #ffffff;
+            --text: #0D223A;
+            --muted: #6B7C93;
+            --border: #E5E9F0;
+            --success: #10B981;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root { --bg: #0D223A; --text: #fff; --muted: #94A3B8; --border: #1E3A5F; }
+        }
+        body { font-family: -apple-system, "SF Pro Text", -ui, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; padding: 80px 24px; }
+        .container { max-width: 720px; margin: 0 auto; text-align: center; }
+        h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+        h1 .check { color: var(--success); }
+        h2 { font-size: 24px; margin: 48px 0 16px; text-align: left; }
+        p.lead { font-size: 20px; color: var(--muted); margin-bottom: 40px; }
+        .steps { text-align: left; margin: 24px 0; }
+        .step { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
+        .step-num { background: var(--brand); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; }
+        .step-body h3 { font-size: 18px; margin-bottom: 4px; }
+        .step-body p { color: var(--muted); font-size: 16px; }
+        .actions { margin: 48px 0; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 10px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+        .btn-primary { background: var(--brand); color: white; }
+        .btn-primary:hover { background: var(--brand-dark); }
+        .btn-secondary { background: transparent; color: var(--brand); border: 2px solid var(--brand); }
+        .btn-secondary:hover { background: var(--brand); color: white; }
+        .insider-perks { background: rgba(46,138,230,0.08); border-left: 4px solid var(--brand); padding: 20px 24px; border-radius: 8px; text-align: left; margin: 32px 0; }
+        .insider-perks h3 { font-size: 16px; margin-bottom: 8px; color: var(--brand); }
+        .insider-perks ul { list-style: none; }
+        .insider-perks li { padding: 4px 0; font-size: 14px; }
+        .insider-perks li::before { content: "✓ "; color: var(--success); }
+        footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+        footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+        footer a:hover { color: var(--brand); }
+        .founder-note { text-align: left; padding: 24px; background: var(--border); border-radius: 12px; margin: 32px 0; }
+        @media (prefers-color-scheme: dark) { .founder-note { background: rgba(255,255,255,0.04); } }
+        .founder-note h3 { margin-bottom: 12px; }
+        .founder-note p { font-size: 15px; color: var(--muted); margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1><span class="check">✓</span> You're in.</h1>
+    <p class="lead">Pre-order confirmed. You're <strong>Founding Seller <span id="founding-number">#—</span> of <span id="founding-total">100</span></strong> — locked at $49 lifetime Pro.</p>
+
+    <div class="insider-perks">
+        <h3>What you get as a founding seller</h3>
+        <ul>
+            <li>Lifetime Pro access (500 generations/mo, AI video, 5 brand profiles, direct Shopify upload)</li>
+            <li>TestFlight invite as soon as the beta is ready (4-6 weeks)</li>
+            <li>Direct access to the founder via email/DM</li>
+            <li>Locked at $49 forever — never any subscription charge</li>
+            <li>14-day full refund window after public launch if it disappoints</li>
+            <li>Founding Seller badge in the app</li>
+            <li>First in line for new features</li>
+        </ul>
+    </div>
+
+    <h2>What happens next</h2>
+    <div class="steps">
+
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+                <h3>Check your inbox</h3>
+                <p>Stripe sent a receipt + I just sent a welcome email with your founding-seller details. If you don't see it in 10 minutes, check spam.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+                <h3>Book a 15-min seller feedback call (optional but appreciated)</h3>
+                <p>I'd love to hear about your current photo workflow + what features would make HeroShot a no-brainer for your store. <a href="https://calendly.com/REPLACE_WITH_CALENDLY" style="color:var(--brand);">Pick a slot here →</a></p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+                <h3>Watch your inbox for TestFlight invite</h3>
+                <p>Beta launches in 4-6 weeks. You'll get a direct TestFlight code. Public App Store launch follows 2-4 weeks after that.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+                <h3>Want to refer another seller?</h3>
+                <p>Forward your receipt or send them <a href="https://heroshot.app" style="color:var(--brand);">heroshot.app</a>. We're giving the first 100 founders the chance to lock $49 lifetime. Spots fill fast.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="founder-note">
+        <h3>👋 A personal note from the founder</h3>
+        <p>I'm building HeroShot because I'm a marketplace seller too. I've spent thousands on product photoshoots and bounced between Pebblely, Photoroom, Canva, and freelancers — same as you probably did.</p>
+        <p>Your $49 isn't just a pre-order. It's saying "yes, build this." I'll respect that by shipping a product that actually saves you time + money. If I don't, you get your money back. Simple.</p>
+        <p>Reach me anytime: <a href="mailto:hello@heroshot.app" style="color:var(--brand);">hello@heroshot.app</a></p>
+    </div>
+
+    <div class="actions">
+        <a href="https://calendly.com/REPLACE_WITH_CALENDLY" class="btn btn-primary">Book 15-min feedback call</a>
+        <a href="https://heroshot.app" class="btn btn-secondary">Back to homepage</a>
+    </div>
+
+    <footer>
+        <p>© 2026 HeroShot · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/support.html">Support</a> · <a href="mailto:hello@heroshot.app">Contact</a></p>
+    </footer>
+
+</div>
+
+<script>
+// Resolve the founding-seller number from the Stripe checkout session ID
+// that Stripe appends to the redirect URL as `?cs=<session_id>`.
+//
+// Falls back gracefully to "#—" if:
+//   - the user landed here without a session_id (manual nav, bookmark)
+//   - the session_id is invalid or unknown to the Worker
+//   - the Worker is unreachable
+//
+// Never blocks the page render — the number is a nice-to-have.
+(function () {
+    const API_BASE = (new URLSearchParams(location.search).get('api')) || 'https://api.heroshot.app';
+    const sessionId = new URLSearchParams(location.search).get('cs');
+    if (!sessionId) return;
+    fetch(API_BASE + '/v1/checkout/' + encodeURIComponent(sessionId))
+        .then(r => r.ok ? r.json() : null)
+        .then(payload => {
+            if (!payload || !payload.ok || !payload.data) return;
+            const n = payload.data.founding_seller_number;
+            if (typeof n === 'number' && n > 0) {
+                const el = document.getElementById('founding-number');
+                if (el) el.textContent = '#' + n;
+            }
+        })
+        .catch(() => { /* silent — counter is informational */ });
+})();
+</script>
+
+</body>
+</html>

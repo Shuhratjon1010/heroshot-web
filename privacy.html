@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — HeroShot</title>
+    <meta name="description" content="HeroShot privacy policy. What we collect, how we use it, how we protect it. GDPR + CCPA compliant.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://heroshot.app/privacy">
+    <style>
+        body { font-family: -apple-system, "SF Pro Text", sans-serif; max-width: 720px; margin: 0 auto; padding: 60px 24px; color: #0D223A; line-height: 1.6; }
+        h1 { font-size: 36px; margin-bottom: 8px; }
+        h2 { font-size: 22px; margin-top: 32px; margin-bottom: 12px; }
+        .updated { color: #6B7C93; margin-bottom: 32px; }
+        p, li { margin-bottom: 12px; }
+        ul { padding-left: 24px; margin-bottom: 16px; }
+        a { color: #2E8AE6; }
+        @media (prefers-color-scheme: dark) {
+            body { background: #0D223A; color: #fff; }
+            .updated { color: #94A3B8; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+<p class="updated">Last updated: 2026-05-26 — HeroShot ("we", "us") respects your privacy. This policy describes what we collect, how we use it, and your rights. It is enforced for consistency against our iOS app's bundled Privacy Manifest (<code>PrivacyInfo.xcprivacy</code>) and our App Store Connect App Privacy survey on every release.</p>
+
+<h2>1. Who we are</h2>
+<p>HeroShot is an iOS app + web platform that generates AI marketing assets from product photos for e-commerce sellers. Contact: <a href="mailto:hello@heroshot.app">hello@heroshot.app</a>.</p>
+
+<h2>2. Data we collect</h2>
+<p>Our iOS app's bundled Privacy Manifest (PrivacyInfo.xcprivacy) and our App Store Connect App Privacy survey both declare these three data types, with no others:</p>
+<ul>
+    <li><strong>Email Address</strong> — Apple Sign-in's private relay address (<code>xxxx@privaterelay.appleid.com</code>). Used for account management. <em>Linked to your account; not used for tracking across other apps.</em></li>
+    <li><strong>User ID</strong> — an internal UUID we mint per signed-in user as the foreign key for projects, brand profiles, and generations. Not an Apple Sign-in token, not an IDFA, not a device identifier. <em>Linked to your account; not used for tracking.</em></li>
+    <li><strong>Photos or Videos</strong> — the product photos you upload and the AI-generated outputs we produce from them. <em>Linked to your account; never used for AI training; never shared with third parties beyond the per-request API call to the AI provider.</em></li>
+</ul>
+<p><strong>Payment data:</strong> Apple StoreKit handles all in-app subscription processing. We see only your subscription status (tier + active/inactive), not card details.</p>
+
+<h2>3. What we do NOT collect</h2>
+<ul>
+    <li>Your real email address (Apple's relay only)</li>
+    <li>Your real name, phone number, physical address</li>
+    <li>Your contacts, location, microphone, calendar, health data</li>
+    <li>Payment card numbers</li>
+    <li>Browsing history, search history, or any usage outside the HeroShot app itself</li>
+    <li>Photos for training AI models — yours stay yours</li>
+    <li>Advertising identifier (IDFA) — we never request it</li>
+    <li>Tracking data across other apps or websites — <code>NSPrivacyTracking</code> in our Privacy Manifest is <strong>false</strong></li>
+</ul>
+<p>v1.0 ships without analytics SDKs and without third-party crash reporting. If we add them in a future version, this policy will be updated AND the App Store Connect Privacy survey will be updated in lockstep — App Store screening enforces consistency between the two.</p>
+
+<h2>4. How we use your data</h2>
+<ul>
+    <li>Provide AI generation services (photos → AI models → assets back to you)</li>
+    <li>Manage your subscription</li>
+    <li>Improve product quality (aggregated anonymous analytics)</li>
+    <li>Send service emails (payment receipts, account changes)</li>
+    <li>Comply with legal obligations</li>
+</ul>
+
+<h2>5. AI processing</h2>
+<p>Photos you upload are sent to our AI providers (Replicate, FAL, Google Veo, Higgsfield) to generate outputs. Photos are processed and stored temporarily on the provider, then deleted per their data policy (typically 30 days). We don't train custom AI on your photos. Generated content is licensed to you for unlimited commercial use.</p>
+
+<h2>6. Data retention</h2>
+<ul>
+    <li>Photos + generations on Free tier: 90 days, then auto-deleted</li>
+    <li>Photos + generations on paid tiers: 12 months, then auto-deleted</li>
+    <li>Account record: until you delete your account</li>
+    <li>Audit logs: 24 months</li>
+</ul>
+
+<h2>7. Third-party services (v1.0)</h2>
+<p>The iOS app uses the following services. Each has its own privacy policy:</p>
+<ul>
+    <li><strong>Apple StoreKit</strong> — in-app subscription processing. We never see your card.</li>
+    <li><strong>Supabase</strong> (auth + Postgres + Storage) — stores your account record, your photos, and the AI-generated outputs.</li>
+    <li><strong>Cloudflare</strong> — edge caching + DDoS protection in front of our API.</li>
+    <li><strong>AI providers (Replicate, FAL, OpenAI)</strong> — receive a per-request copy of the photo + prompt to generate one asset; receive no account-linked metadata; per-provider retention typically 30 days then deleted.</li>
+</ul>
+<p>v1.0 ships <em>without</em> analytics SDKs, <em>without</em> third-party crash reporting (Apple's system-level crash logs only), and <em>without</em> any advertising or attribution SDKs. The web checkout flow (heroshot.app) uses Stripe for non-iOS payments; the iOS app never invokes Stripe and never links to web checkout.</p>
+
+<h2>8. Your rights</h2>
+<p>You can:</p>
+<ul>
+    <li><strong>Delete your account + all data</strong> — Settings → Account → Delete. Confirmation required; the deletion is hard (no soft-delete, no recovery).</li>
+    <li><strong>Cancel your subscription anytime</strong> — iOS Settings → Apple ID → Subscriptions. We follow Apple's standard subscription model.</li>
+    <li><strong>Manage what you've uploaded</strong> — each project can be deleted from the Projects tab; deletion removes the source photo + every generated output for that project.</li>
+</ul>
+<p><strong>GDPR / CCPA:</strong> you have additional rights to access, correct, delete, port, and object to processing. Email <a href="mailto:privacy@heroshot.app">privacy@heroshot.app</a> for any request; we respond within 30 days.</p>
+
+<h2>9. International data transfers</h2>
+<p>Your data may be processed in the US (Cloudflare, Supabase, AI providers). We use Standard Contractual Clauses for EU data transfers.</p>
+
+<h2>10. Children</h2>
+<p>HeroShot is not for children under 13. We do not knowingly collect data from children. If we discover such data, we delete it immediately.</p>
+
+<h2>11. Security</h2>
+<p>All data is encrypted in transit (TLS 1.3) and at rest. Access tokens for marketplace integrations (Shopify, etc.) are stored encrypted via KMS. We never sell or share your data with advertisers.</p>
+
+<h2>12. Changes to this policy</h2>
+<p>We'll notify you of material changes via email or in-app banner at least 30 days before they take effect.</p>
+
+<h2>13. Contact</h2>
+<p>Questions? <a href="mailto:privacy@heroshot.app">privacy@heroshot.app</a></p>
+
+<p style="margin-top:48px; color:#6B7C93; font-size:14px;">© 2026 HeroShot. <a href="/">Home</a> · <a href="/terms.html">Terms</a> · <a href="/support.html">Support</a></p>
+
+</body>
+</html>

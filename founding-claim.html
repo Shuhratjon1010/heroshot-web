@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm your HeroShot founding-seller spot</title>
+    <meta name="description" content="One-time step to link your founding-seller purchase to your Apple ID — before the iOS app lands.">
+    <!-- The claim page is referenced only from the magic-link email and the
+         App Store rejection-risk audit doc. It is NOT a marketing page; we
+         deliberately exclude it from search-engine indexing. -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Apple Sign in with Apple JS — official CDN.
+         See https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js -->
+    <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📸</text></svg>">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --brand: #2E8AE6;
+            --brand-dark: #1E5A99;
+            --navy: #0D223A;
+            --bg: #ffffff;
+            --card-bg: #ffffff;
+            --text: #0D223A;
+            --muted: #6B7C93;
+            --border: #E5E9F0;
+            --success: #10B981;
+            --error: #DC2626;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0D223A;
+                --card-bg: #14304F;
+                --text: #ffffff;
+                --muted: #94A3B8;
+                --border: #1E3A5F;
+            }
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        header .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--brand);
+        }
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 24px;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px 32px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 1px 3px rgba(13, 34, 58, 0.04);
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+        .subtitle {
+            color: var(--muted);
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+        .seller-badge {
+            display: inline-block;
+            background: rgba(46, 138, 230, 0.1);
+            color: var(--brand);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .step {
+            margin: 20px 0;
+            color: var(--muted);
+            font-size: 15px;
+        }
+        .step strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 4px;
+        }
+        #apple-signin-container {
+            margin: 32px 0 16px;
+            min-height: 44px;
+        }
+        /* Apple's official button — we render via JS but provide a fallback */
+        .apple-signin-fallback {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .apple-signin-fallback {
+                background: #fff;
+                color: #000;
+            }
+        }
+        .small {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 16px;
+        }
+        .state-success {
+            text-align: center;
+        }
+        .state-success .check {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--success);
+        }
+        .banner {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+        .banner-error {
+            background: rgba(220, 38, 38, 0.08);
+            color: var(--error);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+        .banner-info {
+            background: rgba(46, 138, 230, 0.08);
+            color: var(--brand);
+            border: 1px solid rgba(46, 138, 230, 0.2);
+        }
+        .hidden { display: none !important; }
+        footer {
+            padding: 24px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--muted); margin: 0 8px; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" style="text-decoration: none;"><span class="logo">HeroShot</span></a>
+    </header>
+
+    <main>
+        <div class="card">
+            <!-- INITIAL state: token validating / not yet validated -->
+            <div id="state-loading">
+                <div class="subtitle" id="loading-text">Checking your founding-seller link…</div>
+            </div>
+
+            <!-- READY state: token valid, show Apple Sign-in button -->
+            <div id="state-ready" class="hidden">
+                <div class="seller-badge" id="seller-badge">Founding Seller</div>
+                <h1 id="hello-line">Confirm your spot</h1>
+                <p class="subtitle">One quick step before the HeroShot iOS app lands in your TestFlight inbox. We need to link your founding-seller purchase to your Apple ID.</p>
+
+                <div class="step">
+                    <strong>Sign in with Apple below</strong>
+                    Same Apple ID you'll use on iPhone — this is how the app recognizes you instantly when you download it.
+                </div>
+
+                <div id="apple-signin-container">
+                    <!-- Apple's JS SDK renders the button here. The fallback
+                         below shows immediately if the SDK fails to load. -->
+                    <button type="button" id="apple-signin-fallback" class="apple-signin-fallback" onclick="startAppleSignIn()">
+                         Sign in with Apple
+                    </button>
+                </div>
+                <p class="small">By signing in, you're confirming this Apple ID owns your HeroShot founding-seller spot. You can only link one Apple ID per spot.</p>
+            </div>
+
+            <!-- ERROR state: token invalid/expired/consumed -->
+            <div id="state-error" class="hidden">
+                <h1>This link isn't valid</h1>
+                <div class="banner banner-error" id="error-text">
+                    The link may have expired, been used already, or be pointed at a spot that's already linked to another Apple ID.
+                </div>
+                <p class="step">If you think this is wrong, just reply to the email we sent you — we'll send a fresh link.</p>
+                <p class="small">Common cases:<br>• You already linked this spot (you're set — TestFlight invite is on its way)<br>• The link is older than 14 days (we can re-mint)<br>• The link was sent to a different email by mistake</p>
+            </div>
+
+            <!-- SUCCESS state: redeemed -->
+            <div id="state-success" class="hidden state-success">
+                <div class="check">✓</div>
+                <h1>Linked.</h1>
+                <p class="subtitle" id="success-subtitle">Your Apple ID is now bound to your founding-seller spot.</p>
+                <div class="banner banner-info">
+                    Watch your Apple ID inbox for the TestFlight invite in the next few days. When you tap "Accept" and open HeroShot, the app will recognize you instantly — no sign-in screen, no restore-purchase taps.
+                </div>
+                <p class="small">You can close this tab.</p>
+            </div>
+
+            <!-- SUBMITTING state: redeem POST in flight -->
+            <div id="state-submitting" class="hidden">
+                <div class="subtitle">Linking your Apple ID to your founding-seller spot…</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <a href="/">heroshot.app</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/support">Support</a>
+    </footer>
+
+    <script>
+        // §3.1.1-mitigation web claim flow. See
+        // engineering/APP_STORE_REJECTION_RISK_AUDIT.md Risk A for context.
+
+        // Backend base — must serve /v1/founding/magic-link/* endpoints.
+        // Same convention as the landing page's API_BASE constant.
+        var API_BASE = "https://api.heroshot.app";
+
+        // Apple Services ID — registered in Apple Developer portal as the
+        // "Sign in with Apple" web client. Operator must register this BEFORE
+        // any magic-link can be redeemed; see backend/GO_LIVE_CUTOVER.md.
+        var APPLE_SERVICES_ID = "com.heroshot.web";
+
+        // Where Apple redirects back after sign-in. Must match the Return URL
+        // declared in the Apple Developer portal for the Services ID. We use
+        // form_post response_mode but Apple still validates the redirect URI.
+        var APPLE_REDIRECT_URI = "https://heroshot.app/founding-claim-callback";
+
+        function $(id) { return document.getElementById(id); }
+
+        function showState(name) {
+            ["state-loading", "state-ready", "state-error", "state-success", "state-submitting"]
+                .forEach(function (s) { $(s).classList.add("hidden"); });
+            $("state-" + name).classList.remove("hidden");
+        }
+
+        function showError(msg) {
+            if (msg) $("error-text").textContent = msg;
+            showState("error");
+        }
+
+        // ───── Token check ─────
+        function getToken() {
+            try {
+                var params = new URLSearchParams(window.location.search);
+                return params.get("token");
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function checkToken() {
+            var token = getToken();
+            if (!token) {
+                showError("Missing link token. Open the link from your email exactly as sent.");
+                return;
+            }
+            if (token.length < 16 || token.length > 256) {
+                showError("This link doesn't look right. Open the original link from your email.");
+                return;
+            }
+            fetch(API_BASE + "/v1/founding/magic-link/check?token=" + encodeURIComponent(token))
+                .then(function (r) {
+                    if (!r.ok) throw new Error("invalid");
+                    return r.json();
+                })
+                .then(function (payload) {
+                    var d = (payload && payload.data) || {};
+                    if (d.founding_seller_number) {
+                        $("seller-badge").textContent = "Founding Seller #" + d.founding_seller_number + " of 100";
+                    }
+                    if (d.first_name) {
+                        $("hello-line").textContent = "Confirm your spot, " + d.first_name;
+                    }
+                    initAppleAuth();
+                    showState("ready");
+                })
+                .catch(function () {
+                    showError();
+                });
+        }
+
+        // ───── Apple Sign-in init ─────
+        function initAppleAuth() {
+            if (typeof AppleID === "undefined" || !AppleID.auth) {
+                // SDK failed to load (ad-blocker, network). Fallback button
+                // is already visible and wired to startAppleSignIn().
+                return;
+            }
+            try {
+                AppleID.auth.init({
+                    clientId: APPLE_SERVICES_ID,
+                    scope: "name email",
+                    redirectURI: APPLE_REDIRECT_URI,
+                    // usePopup=true means Apple's flow returns the identity
+                    // token to the JS callback instead of posting to redirectURI.
+                    // The Worker route at /founding-claim-callback exists only
+                    // as a registered URL Apple validates against; we never
+                    // actually receive a server-POST in popup mode.
+                    usePopup: true,
+                });
+            } catch (e) {
+                // init() throws synchronously on bad config — fall back to
+                // the visible fallback button which still calls startAppleSignIn.
+                console.warn("AppleID.auth.init failed", e);
+            }
+        }
+
+        function startAppleSignIn() {
+            if (typeof AppleID === "undefined" || !AppleID.auth) {
+                showError("Sign in with Apple isn't loading. Try a different browser, or reply to the email we sent and we'll help.");
+                return;
+            }
+            AppleID.auth.signIn().then(function (data) {
+                // data.authorization.id_token is the JWT we POST to the Worker.
+                var idToken = (((data || {}).authorization) || {}).id_token;
+                if (!idToken) {
+                    showError("Sign in with Apple didn't return an identity token. Try again.");
+                    return;
+                }
+                redeem(idToken);
+            }).catch(function (err) {
+                // User canceled is an expected path — don't bury it as an error.
+                if (err && (err.error === "popup_closed_by_user" || err.error === "user_cancelled_authorize")) {
+                    // Stay in the ready state so they can try again.
+                    return;
+                }
+                showError("Sign in with Apple failed. Try again, or reply to the email we sent.");
+            });
+        }
+
+        // ───── Redeem ─────
+        function redeem(appleIdentityToken) {
+            var token = getToken();
+            showState("submitting");
+            fetch(API_BASE + "/v1/founding/magic-link/redeem", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    token: token,
+                    apple_identity_token: appleIdentityToken,
+                }),
+            })
+                .then(function (r) {
+                    return r.json().then(function (body) { return { status: r.status, body: body }; });
+                })
+                .then(function (res) {
+                    if (res.status === 200 && res.body && res.body.ok) {
+                        var d = res.body.data || {};
+                        if (d.founding_seller_number) {
+                            $("success-subtitle").textContent = "You're now linked as Founding Seller #" + d.founding_seller_number + " of 100.";
+                        }
+                        showState("success");
+                        return;
+                    }
+                    if (res.status === 400 && res.body && res.body.error === "magic_link_invalid_or_expired") {
+                        showError();
+                        return;
+                    }
+                    if (res.status === 401) {
+                        showError("Apple couldn't verify your sign-in. Try a different Apple ID or reply to the email.");
+                        return;
+                    }
+                    showError("Something went sideways linking your account. Try again, or reply to the email we sent.");
+                })
+                .catch(function () {
+                    showError("Network error while linking. Check your connection and try again.");
+                });
+        }
+
+        // Boot
+        checkToken();
+    </script>
+</body>
+</html>

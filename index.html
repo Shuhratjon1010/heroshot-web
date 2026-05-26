@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroShot — AI Product Photo Studio for Marketplace Sellers</title>
+    <meta name="description" content="Turn one phone photo into 50+ marketing assets. AI hero shots, lifestyle scenes, and ad videos for Shopify, Amazon, TikTok Shop, and Noon. iOS-first. From $29/mo.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HeroShot — AI Product Photos in 60 Seconds">
+    <meta property="og:description" content="One phone photo. 50+ marketing assets. Built for Shopify, Amazon, TikTok Shop & Noon sellers. iOS-first.">
+    <meta property="og:image" content="https://heroshot.app/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://heroshot.app">
+    <meta property="og:site_name" content="HeroShot">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HeroShot — AI Product Photos in 60 Seconds">
+    <meta name="twitter:description" content="One phone photo → 50+ marketing assets. iOS-first.">
+    <meta name="twitter:image" content="https://heroshot.app/og.png">
+    <meta name="twitter:site" content="@heroshotai">
+    <link rel="canonical" href="https://heroshot.app">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📸</text></svg>">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --brand: #2E8AE6;
+            --brand-dark: #1E5A99;
+            --navy: #0D223A;
+            --bg: #ffffff;
+            --text: #0D223A;
+            --muted: #6B7C93;
+            --border: #E5E9F0;
+            --success: #10B981;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0D223A;
+                --text: #ffffff;
+                --muted: #94A3B8;
+                --border: #1E3A5F;
+            }
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* Nav */
+        nav {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 100;
+            backdrop-filter: saturate(180%) blur(10px);
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 22px; font-weight: 700; color: var(--brand); }
+        .nav-links a { color: var(--text); text-decoration: none; margin-left: 32px; font-weight: 500; }
+        .nav-links a:hover { color: var(--brand); }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p.subhead {
+            font-size: 20px;
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: var(--brand);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--brand-dark);
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--brand);
+            border: 2px solid var(--brand);
+        }
+        .btn-secondary:hover { background: var(--brand); color: white; }
+
+        .trust-strip {
+            font-size: 14px;
+            color: var(--muted);
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .trust-strip span::before { content: "✓ "; color: var(--success); }
+
+        /* Demo section */
+        .demo {
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(46,138,230,0.05), rgba(30,90,153,0.05));
+        }
+        .demo h2 { font-size: clamp(28px, 4vw, 44px); text-align: center; margin-bottom: 16px; }
+        .demo p.subhead-demo {
+            text-align: center;
+            color: var(--muted);
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .demo-placeholder {
+            background: var(--text);
+            color: var(--bg);
+            aspect-ratio: 16/9;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        /* Use cases */
+        .use-cases { padding: 80px 0; }
+        .use-cases h2 { font-size: clamp(28px, 4vw, 44px); text-align: center; margin-bottom: 48px; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .card h3 { font-size: 22px; margin-bottom: 12px; color: var(--brand); }
+
+        /* Comparison */
+        .compare { padding: 80px 0; background: var(--border); }
+        @media (prefers-color-scheme: dark) { .compare { background: rgba(255,255,255,0.02); } }
+        .compare h2 { font-size: clamp(28px, 4vw, 44px); text-align: center; margin-bottom: 48px; }
+        table { width: 100%; max-width: 900px; margin: 0 auto; border-collapse: collapse; background: var(--bg); border-radius: 12px; overflow: hidden; }
+        th, td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--brand); color: white; font-weight: 600; }
+        td:nth-child(n+2) { text-align: center; }
+        .check { color: var(--success); font-weight: 700; }
+        .cross { color: #DC2626; }
+        .partial { color: #F59E0B; }
+        .highlight { background: rgba(46,138,230,0.08); font-weight: 600; }
+
+        /* Pricing */
+        .pricing { padding: 80px 0; }
+        .pricing h2 { font-size: clamp(28px, 4vw, 44px); text-align: center; margin-bottom: 16px; }
+        .pricing-sub { text-align: center; color: var(--muted); margin-bottom: 48px; }
+        .price-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 1100px; margin: 0 auto; }
+        .price-card {
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            background: var(--bg);
+            position: relative;
+        }
+        .price-card.featured {
+            border-color: var(--brand);
+            transform: scale(1.05);
+        }
+        .price-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--brand);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .price-card h3 { font-size: 20px; margin-bottom: 8px; }
+        .price-card .price { font-size: 36px; font-weight: 800; color: var(--brand); margin: 16px 0; }
+        .price-card .price small { font-size: 14px; color: var(--muted); font-weight: 400; }
+        .price-card ul { list-style: none; text-align: left; margin: 20px 0; }
+        .price-card li { padding: 6px 0; font-size: 14px; color: var(--muted); }
+        .price-card li::before { content: "✓ "; color: var(--success); margin-right: 6px; }
+
+        /* Waitlist form */
+        .waitlist {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+            color: white;
+            text-align: center;
+        }
+        .waitlist h2 { font-size: clamp(28px, 4vw, 44px); color: white; margin-bottom: 16px; }
+        .waitlist p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
+        .waitlist-form {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .waitlist-form input {
+            flex: 1;
+            min-width: 240px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+        .waitlist-form button {
+            padding: 16px 32px;
+            border-radius: 12px;
+            border: none;
+            background: var(--navy);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .waitlist-form button:hover { background: #000; }
+        .reserve-link { color: white; opacity: 0.85; margin-top: 16px; display: inline-block; text-decoration: underline; }
+
+        /* FAQ */
+        .faq { padding: 80px 0; }
+        .faq h2 { font-size: clamp(28px, 4vw, 44px); text-align: center; margin-bottom: 48px; }
+        details {
+            max-width: 800px;
+            margin: 0 auto 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        summary { font-weight: 600; font-size: 17px; }
+        details p { margin-top: 12px; color: var(--muted); }
+
+        /* Footer */
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 14px; }
+        footer a { color: var(--muted); margin: 0 12px; text-decoration: none; }
+        footer a:hover { color: var(--brand); }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <div class="logo">📸 HeroShot</div>
+        <div class="nav-links">
+            <a href="#how">How it works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#waitlist">Get early access</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <h1>Turn 1 phone photo into a <span class="gradient">complete marketing kit</span>.</h1>
+        <p class="subhead">HeroShot is the AI photo studio for marketplace sellers. Snap your product on your iPhone. Get 50+ hero shots, lifestyle scenes, ad videos, and infographics in 60 seconds — exported for Shopify, Amazon, TikTok Shop, and Noon.</p>
+        <div class="cta-group">
+            <a href="https://buy.stripe.com/REPLACE_WITH_PREORDER_LINK" class="btn btn-primary" id="btn-pro-preorder" data-founding-cta>Reserve $49 lifetime Pro →</a>
+            <a href="#waitlist" class="btn btn-primary" data-founding-soldout style="display:none; background:#0D223A;">Sold out — join the waitlist →</a>
+            <a href="https://calendly.com/REPLACE_WITH_CALENDLY" class="btn btn-secondary" id="btn-feedback-call">Book 15-min seller feedback call →</a>
+        </div>
+        <p style="font-size:13px; color:var(--muted); margin-top:-16px; margin-bottom:24px;">
+            <strong><span data-founding-spots-remaining>—</span> of <span data-founding-spots-total>100</span></strong> founding spots remaining · Normally $99/mo · 14-day refund guarantee
+        </p>
+        <p style="font-size:14px; color:var(--muted); margin-bottom:24px;"><a href="#waitlist" style="color:var(--brand);">Or just join the free waitlist →</a></p>
+        <p class="trust-strip">
+            <span>Built by sellers, for sellers</span>
+            <span>iOS-first</span>
+            <span>Saves $300+/SKU</span>
+            <span>14-day refund guarantee</span>
+        </p>
+    </div>
+</section>
+
+<section class="demo" id="how">
+    <div class="container">
+        <h2>Watch 1 photo become a full marketing kit.</h2>
+        <p class="subhead-demo">This used to take 10 hours and $400. Now it takes 60 seconds.</p>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="text-align: center;">
+                <p style="font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.06em;">↓ One phone photo of your product</p>
+                <img src="before_messy.png" alt="Amateur iPhone product photo" style="max-width: 320px; width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);">
+            </div>
+            <div style="text-align: center; margin: 28px 0 20px; font-size: 28px;">⬇️</div>
+            <p style="font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; text-align: center;">↓ 5 variants in 60 seconds</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px;">
+                <div style="text-align: center;"><img src="hero_studio.png" alt="Hero shot — studio" style="width:100%; border-radius: 10px; aspect-ratio:1/1; object-fit:cover;"><p style="font-size:11px; color:var(--muted); margin-top:6px;">Studio hero</p></div>
+                <div style="text-align: center;"><img src="hero_threequarter.png" alt="Hero shot — three-quarter" style="width:100%; border-radius: 10px; aspect-ratio:1/1; object-fit:cover;"><p style="font-size:11px; color:var(--muted); margin-top:6px;">3/4 angle</p></div>
+                <div style="text-align: center;"><img src="hero_flatlay.png" alt="Flat lay" style="width:100%; border-radius: 10px; aspect-ratio:1/1; object-fit:cover;"><p style="font-size:11px; color:var(--muted); margin-top:6px;">Flat lay</p></div>
+                <div style="text-align: center;"><img src="lifestyle_apartment.png" alt="Lifestyle indoor" style="width:100%; border-radius: 10px; aspect-ratio:1/1; object-fit:cover;"><p style="font-size:11px; color:var(--muted); margin-top:6px;">Indoor lifestyle</p></div>
+                <div style="text-align: center;"><img src="lifestyle_outdoor.png" alt="Lifestyle outdoor" style="width:100%; border-radius: 10px; aspect-ratio:1/1; object-fit:cover;"><p style="font-size:11px; color:var(--muted); margin-top:6px;">Outdoor golden hour</p></div>
+            </div>
+            <div style="text-align: center; margin-top: 36px;">
+                <p style="font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.06em;">↓ Plus AI ad video</p>
+                <video src="demo_video_5sec.mp4" autoplay muted loop playsinline style="max-width: 280px; width: 100%; border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,0.15);"></video>
+                <p style="font-size: 12px; color: var(--muted); margin-top: 12px;">5-sec product video (9:16 TikTok-ready). Pro tier includes 30 videos/month.</p>
+            </div>
+            <p style="text-align: center; margin-top: 36px; font-size: 18px; font-weight: 600; line-height: 1.5;">Plus Amazon A+ content. Plus Shopify, TikTok Shop, Noon export.<br>All from that one phone photo.</p>
+        </div>
+        <p style="font-size:13px; color:var(--muted); text-align:center; margin-top:24px; max-width:680px; margin-left:auto; margin-right:auto;">Sample output created with current AI models for demonstration. Final HeroShot launches in 8-10 weeks. Pre-orders include a 14-day refund guarantee if the launched product doesn't match the demo specs.</p>
+    </div>
+</section>
+
+<section class="use-cases">
+    <div class="container">
+        <h2>Built for every kind of seller.</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>🛍 Shopify Sellers</h3>
+                <p>Stop paying for photoshoots. Generate brand-consistent hero shots, lifestyle scenes, and 15-sec ad videos — uploaded directly to your store with one tap.</p>
+            </div>
+            <div class="card">
+                <h3>📦 Amazon FBA Sellers</h3>
+                <p>Generate every required image size (2000×2000 main, lifestyle variants, infographic) for every SKU. Drop straight into Seller Central.</p>
+            </div>
+            <div class="card">
+                <h3>🎬 TikTok Shop Sellers</h3>
+                <p>Ad fatigue is real. Generate 10 fresh vertical 9:16 video variants per week — auto-cropped, captioned, ready to publish.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="compare">
+    <div class="container">
+        <h2>Why HeroShot, not another tool</h2>
+        <table>
+            <tr>
+                <th>Need</th>
+                <th>Pebblely</th>
+                <th>Photoroom</th>
+                <th>Canva</th>
+                <th>AdCreative.ai</th>
+                <th class="highlight">HeroShot</th>
+            </tr>
+            <tr>
+                <td>Mobile-first</td>
+                <td class="cross">✗</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+                <td class="cross">✗</td>
+                <td class="highlight check">✓</td>
+            </tr>
+            <tr>
+                <td>Shopify, Amazon, TikTok Shop & Noon export</td>
+                <td class="cross">✗</td>
+                <td class="partial">Shopify only</td>
+                <td class="cross">✗</td>
+                <td class="partial">Meta+Google ads</td>
+                <td class="highlight check">All 4 + more</td>
+            </tr>
+            <tr>
+                <td>AI video generation</td>
+                <td class="cross">✗</td>
+                <td class="partial">Ultra tier only</td>
+                <td class="partial">basic</td>
+                <td class="cross">✗</td>
+                <td class="highlight check">included in Pro $99</td>
+            </tr>
+            <tr>
+                <td>Brand consistency</td>
+                <td class="partial">partial</td>
+                <td class="check">✓ Brand Kit</td>
+                <td class="cross">✗</td>
+                <td class="partial">partial</td>
+                <td class="highlight check">✓</td>
+            </tr>
+            <tr>
+                <td>Built for sellers</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+                <td class="partial">partial</td>
+                <td class="check">ads-focused</td>
+                <td class="highlight check">product-photo workflow first</td>
+            </tr>
+            <tr>
+                <td>Founding-seller lifetime offer</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="highlight check"><strong>$49 lifetime (first 100)</strong></td>
+            </tr>
+            <tr>
+                <td>Starting price</td>
+                <td>$9/mo</td>
+                <td>$9.99/mo</td>
+                <td>$14.99/mo</td>
+                <td>$39/mo</td>
+                <td class="highlight"><strong>Free or $29/mo</strong></td>
+            </tr>
+        </table>
+        <p style="text-align: center; margin-top: 20px; font-size: 13px; color: var(--muted); max-width: 700px; margin-left: auto; margin-right: auto;">Comparison verified May 2026 from each vendor's public pricing page. Photoroom Ultra adds AI video + Shopify publish but at higher tiers; HeroShot bundles AI video + multi-marketplace export in Pro $99. AdCreative.ai is an ad-creative platform, not a product-photo workflow.</p>
+    </div>
+</section>
+
+<section style="padding: 80px 0; background: var(--bg);">
+    <div class="container">
+        <h2 style="font-size: clamp(28px, 4vw, 44px); text-align: center; margin-bottom: 16px;">Works for any product you sell.</h2>
+        <p style="text-align: center; color: var(--muted); font-size: 18px; margin-bottom: 40px;">Same workflow. Different SKUs. From beauty to electronics to home goods.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto;">
+            <div style="text-align: center;"><img src="hero_studio.png" alt="Footwear" style="width:100%; border-radius: 12px; aspect-ratio:1/1; object-fit:cover; box-shadow: 0 6px 20px rgba(0,0,0,0.08);"><p style="font-size:13px; color:var(--muted); margin-top:8px; font-weight: 500;">Footwear</p></div>
+            <div style="text-align: center;"><img src="perfume.png" alt="Beauty / fragrance" style="width:100%; border-radius: 12px; aspect-ratio:1/1; object-fit:cover; box-shadow: 0 6px 20px rgba(0,0,0,0.08);"><p style="font-size:13px; color:var(--muted); margin-top:8px; font-weight: 500;">Beauty</p></div>
+            <div style="text-align: center;"><img src="earbuds.png" alt="Tech / accessories" style="width:100%; border-radius: 12px; aspect-ratio:1/1; object-fit:cover; box-shadow: 0 6px 20px rgba(0,0,0,0.08);"><p style="font-size:13px; color:var(--muted); margin-top:8px; font-weight: 500;">Tech</p></div>
+            <div style="text-align: center;"><img src="candle.png" alt="Home goods" style="width:100%; border-radius: 12px; aspect-ratio:1/1; object-fit:cover; box-shadow: 0 6px 20px rgba(0,0,0,0.08);"><p style="font-size:13px; color:var(--muted); margin-top:8px; font-weight: 500;">Home</p></div>
+            <div style="text-align: center;"><img src="supplement.png" alt="Wellness / supplements" style="width:100%; border-radius: 12px; aspect-ratio:1/1; object-fit:cover; box-shadow: 0 6px 20px rgba(0,0,0,0.08);"><p style="font-size:13px; color:var(--muted); margin-top:8px; font-weight: 500;">Wellness</p></div>
+        </div>
+        <p style="text-align: center; margin-top: 32px; color: var(--muted); font-size: 14px;">Apparel · Beauty · Tech · Home · Wellness · Food · Fashion · Toys · ...all you need is one phone photo.</p>
+    </div>
+</section>
+
+<section class="pricing" id="pricing">
+    <div class="container">
+        <h2>Plans that scale with your store.</h2>
+        <p class="pricing-sub">Founding sellers lock $49 lifetime Pro (first 100). Or start free + upgrade later. Cancel anytime.</p>
+        <div class="price-cards">
+            <div class="price-card">
+                <h3>Free</h3>
+                <div class="price">$0<small>/forever</small></div>
+                <ul>
+                    <li>3 generations / mo</li>
+                    <li>1 brand profile</li>
+                    <li>Standard quality</li>
+                    <li>Watermarked</li>
+                    <li>Single marketplace</li>
+                </ul>
+                <a href="#waitlist" class="btn btn-secondary" style="width:100%;">Start free</a>
+            </div>
+            <div class="price-card">
+                <h3>Starter</h3>
+                <div class="price">$29<small>/mo</small></div>
+                <ul>
+                    <li>100 generations / mo</li>
+                    <li>1 brand profile</li>
+                    <li>4K quality</li>
+                    <li>No watermark</li>
+                    <li>All marketplaces</li>
+                </ul>
+                <a href="#waitlist" class="btn btn-secondary" style="width:100%;">Get Starter</a>
+            </div>
+            <div class="price-card featured">
+                <h3>Pro</h3>
+                <div class="price">$99<small>/mo</small></div>
+                <ul>
+                    <li>500 generations / mo</li>
+                    <li>5 brand profiles</li>
+                    <li>AI video (30/mo)</li>
+                    <li>Direct Shopify upload</li>
+                    <li>Priority queue (2x faster)</li>
+                </ul>
+                <a href="https://buy.stripe.com/REPLACE_WITH_PREORDER_LINK" class="btn btn-primary" id="btn-pro-preorder-pricing" data-founding-cta style="width:100%;">Reserve $49 lifetime →</a>
+                <a href="#waitlist" class="btn btn-primary" data-founding-soldout style="display:none; width:100%; background:#0D223A;">Sold out — join waitlist →</a>
+                <p style="font-size:12px; color:var(--muted); margin-top:8px;"><strong><span data-founding-spots-remaining>—</span> of <span data-founding-spots-total>100</span></strong> spots left · or <a href="#waitlist" style="color:var(--brand);">7-day free trial</a></p>
+            </div>
+            <div class="price-card">
+                <h3>Business</h3>
+                <div class="price">$299<small>/mo</small></div>
+                <ul>
+                    <li>2,000 generations</li>
+                    <li>25 brands</li>
+                    <li>100 videos</li>
+                    <li>Team seats (3)</li>
+                    <li>API access</li>
+                </ul>
+                <a href="mailto:hello@heroshot.app" class="btn btn-secondary" style="width:100%;">Talk to founder</a>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top:32px; color:var(--muted); font-size:14px;">Annual plans save 17%. Agency tier $999/mo with white-label available. <a href="mailto:hello@heroshot.app" style="color:var(--brand);">Contact for Enterprise</a>.</p>
+    </div>
+</section>
+
+<section class="waitlist" id="waitlist">
+    <div class="container">
+        <h2>Get on the TestFlight beta.</h2>
+        <p>We're opening early access to the first 500 sellers. Drop your email + we'll email you when HeroShot is ready (next 4-6 weeks).</p>
+        <!-- JS submits via fetch to API_BASE+/v1/waitlist; action= is a no-JS mailto fallback. -->
+        <form class="waitlist-form" id="signup-form" action="mailto:founder@heroshot.app" method="POST" novalidate>
+            <input type="email" name="email" placeholder="your@email.com" required
+                   aria-label="Email address"
+                   autocomplete="email"
+                   inputmode="email"
+                   spellcheck="false">
+            <select name="marketplace"
+                    aria-label="Which marketplace do you sell on"
+                    style="padding: 16px 20px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; min-width: 180px;">
+                <option value="">Where do you sell?</option>
+                <option value="shopify">Shopify</option>
+                <option value="amazon">Amazon</option>
+                <option value="ttshop">TikTok Shop</option>
+                <option value="noon">Noon</option>
+                <option value="multiple">Multiple</option>
+                <option value="other">Other</option>
+            </select>
+            <button type="submit">Get early access</button>
+        </form>
+        <p id="signup-error" role="alert" aria-live="polite" style="display:none; color:#FEE2E2; background:#7F1D1D; padding:12px 16px; border-radius:8px; margin-top:12px; max-width:560px; margin-left:auto; margin-right:auto; font-size:14px;"></p>
+        <a href="https://buy.stripe.com/REPLACE_WITH_YOUR_LINK" class="reserve-link">Or reserve your spot — $1 today (applied to your first month) →</a>
+    </div>
+</section>
+
+<section class="faq">
+    <div class="container">
+        <h2>Frequently asked.</h2>
+        <details>
+            <summary>Will Apple reject AI-generated product images?</summary>
+            <p>No. Commercial AI image generation is allowed. We follow App Store Guidelines 4.7 + privacy manifest requirements. Generated content is yours.</p>
+        </details>
+        <details>
+            <summary>Can I use these images for ads on TikTok / Meta?</summary>
+            <p>Yes. All generated content is licensed for your commercial use across any platform.</p>
+        </details>
+        <details>
+            <summary>Do you store my photos?</summary>
+            <p>For 90 days on Free tier, 12 months on paid. You can delete them anytime. We never use your photos to train AI.</p>
+        </details>
+        <details>
+            <summary>What marketplaces are supported at launch?</summary>
+            <p>Shopify (direct upload), Amazon (download formatted), TikTok Shop (download formatted), Noon (download formatted), Meta Ads (formatted), Google Shopping (formatted). More coming.</p>
+        </details>
+        <details>
+            <summary>Can I cancel anytime?</summary>
+            <p>Yes. Cancel via iOS Settings → Subscriptions. Your access continues until the end of the billing period.</p>
+        </details>
+        <details>
+            <summary>What about Arabic / Spanish / multi-language?</summary>
+            <p>Arabic + Spanish launching in v1.1. Listing translation features coming.</p>
+        </details>
+        <details>
+            <summary>How is this different from Photoroom Ultra?</summary>
+            <p>Photoroom is excellent for Shopify-only sellers — they added AI video + Shopify direct upload at Ultra tier. HeroShot's wedge: <strong>multi-marketplace</strong>. We export formatted for Amazon (A+ content + variant sizes), TikTok Shop (9:16 vertical), and Noon (Gulf-required dims) — Photoroom does none of these. Plus AI video is in our $99 Pro tier, not $$$ Ultra. If you sell on 2+ marketplaces, HeroShot pays for itself in time saved cropping + re-uploading.</p>
+        </details>
+        <details>
+            <summary>What if I pre-order $49 lifetime Pro and the launched product disappoints?</summary>
+            <p>Full refund within 14 days of public launch if the product doesn't deliver what we demo here. Just email refund@heroshot.app. No questions.</p>
+        </details>
+        <details>
+            <summary>When will HeroShot launch?</summary>
+            <p>TestFlight beta in 4-6 weeks (you'll get an invite). Public App Store in 8-10 weeks. Pre-order locks your $49 lifetime price + first-100-seller status.</p>
+        </details>
+        <details>
+            <summary>Why iOS-first?</summary>
+            <p>Sellers carry phones everywhere — warehouse, packaging area, on the road. iPhone camera + Apple Intelligence + on-device processing makes mobile the natural workflow. Android coming in v1.1.</p>
+        </details>
+    </div>
+</section>
+
+<section style="padding: 80px 0; background: linear-gradient(135deg, var(--brand), var(--brand-dark)); color: white; text-align: center;">
+    <div class="container">
+        <h2 style="color:white; font-size:clamp(28px,4vw,44px); margin-bottom:16px;">Stop spending $300/SKU on product photos.</h2>
+        <p style="font-size:18px; opacity:0.9; max-width:600px; margin: 0 auto 32px;">Pre-order Pro lifetime for $49. First 100 sellers only.</p>
+        <a href="https://buy.stripe.com/REPLACE_WITH_PREORDER_LINK" style="display:inline-block; padding: 18px 40px; border-radius: 12px; background: var(--navy); color: white; text-decoration: none; font-weight: 700; font-size: 18px;" id="btn-final-cta">Reserve $49 lifetime Pro →</a>
+        <p style="margin-top:20px;"><a href="https://calendly.com/REPLACE_WITH_CALENDLY" style="color:white; opacity:0.9; text-decoration:underline; margin-right:24px;">Or book 15-min feedback call →</a><a href="#waitlist" style="color:white; opacity:0.85; text-decoration:underline;">Or just join waitlist →</a></p>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2026 HeroShot. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/support">Support</a> · <a href="mailto:hello@heroshot.app">Contact</a> · <a href="https://twitter.com/heroshotai">Twitter</a> · <a href="https://tiktok.com/@heroshotai">TikTok</a></p>
+    </div>
+</footer>
+
+<!-- Plausible analytics: replace data-domain with heroshot.app once Plausible account live -->
+<script defer data-domain="heroshot.app" src="https://plausible.io/js/script.tagged-events.outbound-links.js"></script>
+
+<script>
+// HeroShot landing-page JS — wires the form + counter to the Worker.
+// API_BASE is the deployed Cloudflare Worker. Override via ?api= URL param
+// for local dev: https://heroshot.app/?api=http://localhost:8787
+const API_BASE = (new URLSearchParams(location.search).get('api')) || 'https://api.heroshot.app';
+
+function trackEvent(name, props) {
+    if (window.plausible) window.plausible(name, { props });
+    if (typeof console !== 'undefined') console.log('[track]', name, props);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    // ── CTA click tracking ─────────────────────────────────────────────
+    ['btn-pro-preorder', 'btn-pro-preorder-pricing', 'btn-feedback-call', 'btn-final-cta'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+            trackEvent('CTA Click', { cta: id });
+        });
+    });
+
+    // ── Waitlist signup → Worker ───────────────────────────────────────
+    const form = document.getElementById('signup-form');
+    const errorBox = document.getElementById('signup-error');
+    function showError(msg) {
+        if (errorBox) {
+            errorBox.textContent = msg;
+            errorBox.style.display = 'block';
+        }
+    }
+    function clearError() {
+        if (errorBox) {
+            errorBox.textContent = '';
+            errorBox.style.display = 'none';
+        }
+    }
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearError();
+            const email = (form.email?.value || '').trim();
+            const marketplace = form.marketplace?.value || '';
+            const submitBtn = form.querySelector('button[type=submit]');
+            const originalText = submitBtn?.textContent || 'Get early access';
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showError('Please enter a valid email address.');
+                return;
+            }
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+            try {
+                const resp = await fetch(API_BASE + '/v1/waitlist', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email,
+                        marketplace,
+                        referrer: document.referrer || null,
+                    }),
+                });
+                const data = await resp.json().catch(() => ({}));
+                if (resp.ok && data.ok) {
+                    trackEvent('Waitlist Signup', { marketplace: marketplace || 'unspecified' });
+                    form.innerHTML = '<p style="color:white; font-size:18px; font-weight:600; text-align:center;">✓ You\'re on the list. Check your email for next steps.</p>';
+                } else {
+                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
+                    showError('Sign-up failed: ' + (data.error || ('HTTP ' + resp.status)) + '. Email founder@heroshot.app if this persists.');
+                }
+            } catch (err) {
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
+                showError('Network error. Please try again or email founder@heroshot.app.');
+            }
+        });
+    }
+
+    // ── Founding-seller counter (badge near pre-order CTA) ─────────────
+    refreshFoundingCounter();
+    // Re-poll every 30s so the badge stays roughly fresh during heavy traffic.
+    setInterval(refreshFoundingCounter, 30_000);
+
+    // ── Scroll-depth tracking (50%, 75%, 100%) ─────────────────────────
+    let scroll50 = false, scroll75 = false, scroll100 = false;
+    window.addEventListener('scroll', () => {
+        const pct = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+        if (pct > 0.5 && !scroll50) { trackEvent('Scroll', { depth: '50%' }); scroll50 = true; }
+        if (pct > 0.75 && !scroll75) { trackEvent('Scroll', { depth: '75%' }); scroll75 = true; }
+        if (pct > 0.95 && !scroll100) { trackEvent('Scroll', { depth: '100%' }); scroll100 = true; }
+    });
+});
+
+async function refreshFoundingCounter() {
+    try {
+        const resp = await fetch(API_BASE + '/v1/founding-seller-count', { cache: 'no-store' });
+        if (!resp.ok) return;
+        const data = await resp.json();
+        if (!data.ok || !data.data) return;
+        const claimed = data.data.spots_claimed;
+        const total = data.data.spots_total;
+        const remaining = data.data.spots_remaining;
+        document.querySelectorAll('[data-founding-spots-claimed]').forEach(el => {
+            el.textContent = claimed;
+        });
+        document.querySelectorAll('[data-founding-spots-total]').forEach(el => {
+            el.textContent = total;
+        });
+        document.querySelectorAll('[data-founding-spots-remaining]').forEach(el => {
+            el.textContent = remaining;
+        });
+        // Auto-hide pre-order CTAs when cap is reached (graceful fallback to waitlist).
+        if (remaining <= 0) {
+            document.querySelectorAll('[data-founding-cta]').forEach(el => {
+                el.style.display = 'none';
+            });
+            document.querySelectorAll('[data-founding-soldout]').forEach(el => {
+                el.style.display = '';
+            });
+        }
+    } catch (_) {
+        // Silent — counter is informational; failure must not block the page.
+    }
+}
+</script>
+
+</body>
+</html>
