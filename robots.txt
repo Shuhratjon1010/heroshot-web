@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /welcome
+Disallow: /founding-claim
+
+Sitemap: https://heroshot.app/sitemap.xml
