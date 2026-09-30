@@ -1,0 +1,16 @@
+# Cloudflare Pages redirects. https://developers.cloudflare.com/pages/configuration/redirects/
+# privacy.html, terms.html and support.html are redirect stubs kept only so the
+# old github.io links keep working there. On Cloudflare these rules win, so the
+# stubs are never served.
+/privacy             /privacy/         301
+/terms               /terms/           301
+/support             /support/         301
+/privacy.html        /privacy/         301
+/terms.html          /terms/           301
+/support.html        /support/         301
+# Links inside the iOS app that v1.0 no longer needs a page for.
+/ai-disclosure       /privacy/#photos  301
+/content-policy      /terms/#acceptable-use 301
+# Pre-order links sent before launch.
+/founding/claim      /founding-claim  200
+/welcome.html        /welcome         301

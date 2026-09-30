@@ -1,94 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support — HeroShot</title>
-    <meta name="description" content="HeroShot help center. How to get unstuck, file a report, contact support, manage your subscription.">
-    <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://heroshot.app/support">
-    <style>
-        body { font-family: -apple-system, "SF Pro Text", sans-serif; max-width: 720px; margin: 0 auto; padding: 60px 24px; color: #0D223A; line-height: 1.6; }
-        h1 { font-size: 36px; margin-bottom: 8px; }
-        h2 { font-size: 22px; margin-top: 32px; margin-bottom: 12px; }
-        h3 { font-size: 17px; margin-top: 20px; margin-bottom: 6px; }
-        .updated { color: #6B7C93; margin-bottom: 32px; }
-        p, li { margin-bottom: 12px; }
-        ul { padding-left: 24px; margin-bottom: 16px; }
-        a { color: #2E8AE6; }
-        code { background: rgba(46, 138, 230, 0.08); padding: 2px 6px; border-radius: 4px; font-size: 14px; }
-        .contact-card { border: 1px solid #E1E8F0; border-radius: 12px; padding: 20px; margin: 24px 0; }
-        @media (prefers-color-scheme: dark) {
-            body { background: #0D223A; color: #fff; }
-            .updated { color: #94A3B8; }
-            .contact-card { border-color: #2C3E5C; }
-            code { background: rgba(46, 138, 230, 0.15); }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support | HeroShot</title>
+<meta name="description" content="Get help with HeroShot: restore purchases, cancel or refund Pro, get cleaner cutouts, find your exports, and contact support.">
+<link rel="canonical" href="https://heroshot.app/support/">
+<meta property="og:title" content="HeroShot Support">
+<meta property="og:image" content="https://heroshot.app/assets/og.jpg">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../"><img src="../assets/icon.svg" alt="" width="30" height="30">HeroShot</a>
+    <nav class="nav-links" aria-label="Primary"><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a></nav>
+  </div>
+</header>
 
-<h1>Support</h1>
-<p class="updated">HeroShot help center · contact, FAQ, account, subscription, content reports</p>
+<main class="doc">
+  <h1>How can we help?</h1>
+  <p class="updated">Answers to common questions about HeroShot for iPhone. If yours isn't here, email us.</p>
 
-<h2>Contact</h2>
-<div class="contact-card">
-    <p style="margin-bottom: 8px;"><strong>Email:</strong> <a href="mailto:support@heroshot.app">support@heroshot.app</a></p>
-    <p style="margin-bottom: 8px;"><strong>Response time:</strong> within 1 business day (Monday–Friday). Most replies within 4 hours during business hours.</p>
-    <p style="margin: 0;"><strong>App Review reviewer or App Store Connect contact</strong>: <a href="mailto:founder@heroshot.app">founder@heroshot.app</a> — escalated within 4 business hours during review windows.</p>
-</div>
+  <div class="summary contact-card">
+    <div>
+      <strong>Email support</strong><br>
+      <span style="color:var(--muted)">We usually reply within two business days. Include your iPhone model, iOS version and HeroShot version (Settings, then About).</span>
+    </div>
+    <a class="btn" href="mailto:support@heroshot.app?subject=HeroShot%20support">support@heroshot.app</a>
+  </div>
 
-<h2>Frequently asked</h2>
+  <h2 id="restore">I paid for Pro but it isn't unlocked</h2>
+  <ol>
+    <li>Make sure you're signed in to the same Apple ID you bought Pro with (Settings, then your name).</li>
+    <li>In HeroShot, open the Pro screen and tap <strong>Restore Purchases</strong>.</li>
+    <li>If Pro still doesn't unlock, force-quit HeroShot, open it again and repeat step 2. Then email us with the date of purchase; please don't include card details.</li>
+  </ol>
 
-<h3>How do I sign in?</h3>
-<p>HeroShot uses Sign in with Apple only. Tap "Continue with Apple" on the welcome screen. We never store your real email, only Apple's private relay address. You can revoke access anytime via Settings → Apple ID → Sign in with Apple → HeroShot.</p>
+  <h2 id="cancel">How do I cancel Pro?</h2>
+  <p>Apple manages all subscriptions. Open the Settings app, tap your name, then <strong>Subscriptions</strong>, then <strong>HeroShot</strong>, and tap <strong>Cancel Subscription</strong>. Cancel at least 24 hours before your trial or billing period ends to avoid the next charge. You keep Pro until the end of the period you paid for. Deleting the app does not cancel a subscription.</p>
 
-<h3>What does a HeroShot subscription include?</h3>
-<p>Three paid tiers, plus a free trial on Pro:</p>
-<ul>
-    <li><strong>Starter</strong> ($29/month or $290/year) — 100 generations/month, 1 brand profile</li>
-    <li><strong>Pro</strong> ($99/month or $990/year) — 500 generations/month, AI ad video, 5 brand profiles, <strong>7-day free trial</strong></li>
-    <li><strong>Business</strong> ($299/month or $999/year) — 2000 generations/month, team access, API</li>
-</ul>
-<p>All subscriptions are managed via Apple — billing, renewal, and cancellation happen in iOS Settings → Apple ID → Subscriptions.</p>
+  <h2 id="refund">How do I get a refund?</h2>
+  <p>Apple processes refunds for App Store purchases, so we can't issue them directly. Request one at <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>, sign in, find HeroShot and choose "Request a refund".</p>
 
-<h3>How do I cancel my subscription?</h3>
-<p>iOS Settings → tap your Apple ID at the top → Subscriptions → HeroShot → Cancel Subscription. Apple handles the rest. You retain access through the end of your current billing period.</p>
+  <h2 id="cutout">The cutout missed part of my product</h2>
+  <ul>
+    <li>Shoot in even light and avoid strong shadows falling on the product.</li>
+    <li>Leave some space around the product so its whole outline is in frame.</li>
+    <li>Use a background that contrasts with the product: a white mug on a white table is hard to separate.</li>
+    <li>Glass, very thin parts (like cables or chains) and fuzzy edges are the hardest. Try another angle or a darker background.</li>
+  </ul>
+  <p>If a photo still won't cut out cleanly, email it to us if you're happy to share it. It helps us improve.</p>
 
-<h3>How do I delete my account?</h3>
-<p>In the app: Settings → Account → Delete Account. You'll be asked to type DELETE to confirm, then tap a second confirm button. Your account record, every uploaded photo, every generated asset, and every brand profile is hard-deleted within 30 days. You'll receive a confirmation email immediately.</p>
-<p>If you can't access the app, email <a href="mailto:privacy@heroshot.app">privacy@heroshot.app</a> with your Apple Sign-in relay address and we'll process the deletion manually.</p>
+  <h2 id="exports">Where are my exports saved?</h2>
+  <p>Tap <strong>Export</strong> to open the share sheet. Choose <strong>Save Image</strong> to put it in your Photos library, or send it to Files, AirDrop, Mail or a seller app. HeroShot names each file after its marketplace preset so it's easy to find.</p>
 
-<h3>Where do my photos go?</h3>
-<p>Your product photos and generated assets are stored on our private storage in Supabase, scoped to your account. They never leave our infrastructure except as a per-request API call to the AI provider (Replicate, FAL, or OpenAI) that generates one asset. We do not train AI on your photos. Retention policy: Free tier 90 days, paid tiers 12 months, with auto-deletion.</p>
+  <h2 id="mark">Why is there a HeroShot mark on my image?</h2>
+  <p>Free exports include a small mark in the corner and are limited to 1080 pixels on the long side. HeroShot Pro removes the mark and exports at each marketplace's full size.</p>
 
-<h3>How do I report a generated asset?</h3>
-<p>Tap the flag icon on any result in the Results Gallery, or open Settings → Diagnostics → Recent Generations and tap "Report" on the asset. Pick a category (Inappropriate / Copyright / Other), add optional notes, and tap Send. We review every report within 24 hours and remove confirmed-violating content within 24 hours of confirmation. Repeat-violation accounts are suspended.</p>
+  <h2 id="sizes">Which sizes does each preset use?</h2>
+  <table>
+    <thead><tr><th>Preset</th><th>Pro size</th><th>Shape</th></tr></thead>
+    <tbody>
+      <tr><td>Amazon</td><td>2000 × 2000 px, pure white</td><td>Square</td></tr>
+      <tr><td>Etsy</td><td>2700 × 2025 px</td><td>4:3</td></tr>
+      <tr><td>Shopify</td><td>2048 × 2048 px</td><td>Square</td></tr>
+      <tr><td>eBay</td><td>1600 × 1600 px</td><td>Square</td></tr>
+      <tr><td>TikTok Shop</td><td>1200 × 1200 px</td><td>Square</td></tr>
+      <tr><td>Instagram</td><td>1080 × 1350 px</td><td>4:5</td></tr>
+    </tbody>
+  </table>
 
-<h3>The generation failed. What now?</h3>
-<ul>
-    <li>Make sure you have an internet connection.</li>
-    <li>Try a different photo — extremely low-quality or extremely large photos sometimes trip the AI provider's input validation.</li>
-    <li>Check whether the generation was blocked by our content-moderation pipeline. We block prompts and outputs involving celebrity likenesses, copyrighted brand logos, NSFW, hate, and violent imagery — by design.</li>
-    <li>If none of the above, email <a href="mailto:support@heroshot.app">support@heroshot.app</a> with a screenshot of the error.</li>
-</ul>
+  <h2 id="photos-privacy">Do you see my photos?</h2>
+  <p>No. Background removal runs entirely on your iPhone and your photos are never uploaded. See the <a href="../privacy/">Privacy Policy</a>.</p>
 
-<h3>I think my account is restricted. Help?</h3>
-<p>If we suspended your account for repeat content-policy violations, we send a notice to the email on file with the review window (typically 7 days). You can appeal by replying to that notice. If you don't believe you violated the content policy, email <a href="mailto:support@heroshot.app">support@heroshot.app</a> with your Apple Sign-in relay address; we re-review every appeal within 24 hours.</p>
+  <h2 id="requirements">What do I need to run HeroShot?</h2>
+  <p>An iPhone with iOS 17 or later.</p>
 
-<h3>I need help understanding the brand profile</h3>
-<p>A brand profile is your saved logo, color palette, and font choices. HeroShot applies these to every generation so your hero shots, lifestyle scenes, and ad creatives match your brand. You can have 1 brand profile on Starter and 5 on Pro/Business.</p>
+  <h2 id="delete">How do I delete my account?</h2>
+  <p>If you signed in with Apple, open HeroShot, go to Settings, then Account, then <strong>Delete Account</strong>. This permanently removes your account data from our servers. It doesn't cancel an Apple subscription; see <a href="#cancel">how to cancel</a>. If you never signed in, there's no account to delete: just delete the app.</p>
 
-<h2>Status</h2>
-<p>If HeroShot is down or degraded, we post updates on <a href="https://x.com/heroshot_app">@heroshot_app</a>. We don't run a public status page yet — the team is small enough that direct contact is the fastest path.</p>
+  <h2 id="signin">Sign in with Apple isn't working</h2>
+  <p>You don't need to sign in to use HeroShot. If you want to and it fails, check that you're connected to the internet and signed in to iCloud in Settings, then try again. If it still fails, email us with the time it happened.</p>
 
-<h2>Press / partnerships</h2>
-<p>For press inquiries: <a href="mailto:press@heroshot.app">press@heroshot.app</a>. For partnerships, integrations, or API access: <a href="mailto:partners@heroshot.app">partners@heroshot.app</a>.</p>
+  <h2 id="ideas">I have an idea or found a bug</h2>
+  <p>We read everything. Email <a href="mailto:support@heroshot.app?subject=HeroShot%20feedback">support@heroshot.app</a> with what you expected and what happened, and a screenshot if you can.</p>
+</main>
 
-<h2>Legal</h2>
-<p>See our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a> for the formal versions.</p>
-
-<p style="margin-top:48px; color:#6B7C93; font-size:14px;">© 2026 HeroShot. <a href="/">Home</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
-
+<footer>
+  <div class="wrap">
+    <span>© 2026 HeroShot</span>
+    <nav aria-label="Footer"><a href="../">Home</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a></nav>
+  </div>
+</footer>
 </body>
 </html>
