@@ -79,7 +79,7 @@ Then send a test email to support@heroshot.app and confirm it arrives.
 
 ## 6. Point App Store Connect at the new pages
 
-Do this as soon as step 5 passes. The old github.io `.html` pages stop working once this branch is merged.
+Do this as soon as step 5 passes. Until then the old github.io links keep working: `privacy.html`, `terms.html` and `support.html` stay in the repo as small redirect pages for GitHub Pages, and Cloudflare redirects them instead.
 
 | Where in App Store Connect | Field | Value |
 |---|---|---|
